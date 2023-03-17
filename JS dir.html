@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>JS directory</title>
+    <link rel="icon" href="https://discordhome.com/user_upload/emojis/pepeyayrunning-gifemoji.gif">
+    <style>
+        .h1{
+            margin-top: -2px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 6em;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .help{
+            position: absolute;
+            background-color: #FFFFFF;
+            width: 600px;
+            border-radius: 10px;
+            border:1px solid black;
+            z-index: 1;
+        }
+        .buffer{
+            position: absolute;
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 5%;
+
+        }
+        .buffElem{
+            background-color: lightgray;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+
+        }
+        .buffElem a{
+            text-decoration: none;
+            color: black;
+            margin-left: 10px;
+        }
+        .greetings{
+            position: absolute;
+            z-index:0;
+        }
+        details {
+
+            cursor: pointer;
+        }
+        .nav {
+            width: 330px;
+            min-width: 330px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            left: -320px;
+            padding: 15px 20px;
+            -webkit-transition: left 0.3s;
+            -moz-transition: left 0.3s;
+            transition: left 0.3s;
+            background: #000000;
+            z-index: 2000;
+
+        }
+        .nav::-webkit-scrollbar {
+            width: 0;
+        }
+        .nav-toggle {
+            position: absolute;
+            left: 320px;
+            top: 0;
+            height: 100%;
+            padding: 0.5em;
+            background: inherit;
+            color: #dadada;
+            cursor: pointer;
+            font-size: 1.2em;
+            line-height: 1;
+            z-index: 2001;
+        }
+        .nav-toggle:after {
+            content: '\2630';
+            text-decoration: none;
+        }
+        [id='nav-toggle'] {
+            position: absolute;
+            display: none;
+
+        }
+        [id='nav-toggle']:checked ~ .nav > .nav-toggle {
+            left: auto;
+            right: 10px;
+            top: 1em;
+        }
+        [id='nav-toggle']:checked ~ .nav {
+            left: 0;
+        }
+        [id='nav-toggle']:checked ~ .nav > .nav-toggle:after {
+            content: '\2715';
+        }
+        .nav h2 {
+            width: 90%;
+            padding: 0;
+            margin: 10px 0;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            text-shadow: rgba(255, 255, 255, .1) -1px -1px 1px, rgba(0, 0, 0, .5) 1px 1px 1px;
+            font-size: 1.3em;
+            line-height: 1.3em;
+            opacity: 0;
+
+        }
+        .nav h2 a {
+            color: #dadada;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        [id='nav-toggle']:checked ~ .nav h2 {
+            opacity: 1;
+        }
+        .nav > ul {
+            display: block;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .nav > ul > li {
+            line-height: 2.5;
+        }
+        [id='nav-toggle']:checked ~ .nav > ul > li {
+            opacity: 1;
+        }
+        .nav > ul > li > a {
+            display: inline-block;
+            position: relative;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 1.2em;
+            line-height: 24px;
+            text-decoration: underline;
+            color: #dadada;
+            width: 90%;
+        }
+        * {box-sizing: border-box;}
+        .search-form {
+            position: relative;
+            width: 600px;
+            margin: 10% auto 0;
+        }
+        input.textbox {
+            width: 100%;
+            height: 42px;
+            padding-left: 10px;
+            border: 2px solid #000000;
+            border-radius: 25px;
+            outline: none;
+            background: #ffffff;
+            color: #000000;
+        }
+        button {
+            position: absolute;
+            top: 0;
+            right: 0px;
+            width: 80px;
+            height: 42px;
+            border: none;
+            background: #000000;
+            border-radius: 25px 25px 25px 25px;
+            cursor: pointer;
+        }
+        button:before {
+            content: "search";
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            color: #ffffff;
+        }
+        .button{
+            position: relative;
+            align-items: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .red{
+            width: 60%;
+            margin-left:20%;
+            border: 2px solid black;
+            border-radius:50px;
+            border-right-color: white;
+            border-left-color: white;
+            text-align: center;
+        }
+        .red1{
+            width: 60%;
+            margin-left:20%;
+            border: 2px solid black;
+            border-right-color: white;
+            border-left-color: white;
+            border-top-color: white;
+            border-radius:50px;
+        }
+        .tekst{
+            width: 45%;
+            margin-left:27.5%;
+        }
+    </style>
+    <style>
+        .filter {
+            width: 900px;
+            height: 450px;
+            margin: 0 auto;
+        }
+        .filter-card-list {
+            display: flex;
+            padding: 0;
+        }
+        .filter-card {
+            display: flex;
+            flex-direction: column;
+            height: 200px;
+            width: 350px;
+            min-width: 100px;
+            padding: 1.5rem;
+            margin: 0;
+        }
+        .card-header p {
+            font-size: 14px;
+            margin: 0 0 1rem;
+        }
+        .dropdown li {
+            list-style: none;
+            padding: 5px 0;
+        }
+        .dropdown-menu {
+            position: relative;
+            padding: 0;
+            width: 170px;
+        }
+        .dropdown-submenu:hover {
+            background-color: #f7f7f7;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+            background-color: #f7f7f7;
+            overflow-y: scroll;
+            height: 300px;
+            z-index: 1;
+            width: 200px;
+        }
+        .dropdown-submenu .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 170px;
+            top: 0;
+        }
+    </style>
+    <style>
+        .timeline {
+            margin-left: 2%;
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+        .os_name {
+            text-align: center;
+            height: 38px;
+            margin: 60px 0;
+        }
+        .flex-parent-Windows {
+            display: flex;
+            width: 110vw;
+            justify-content: center;
+        }
+        .flex-parent-OS {
+            display: flex;
+            width: 150vw;
+            justify-content: center;
+        }
+        .flex-parent-Android {
+            display: flex;
+            width: 250vw;
+            justify-content: center;
+        }
+        .flex-parent-IOS {
+            display: flex;
+            width: 550vw;
+            justify-content: center;
+        }
+        .input-flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            z-index: 0;
+        }
+        .input {
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            position: relative;
+            border-radius: 50%;
+        }
+        .input::before, .input::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1141%;
+            background-color: #000000;
+            height: 5px;
+        }
+        .input span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+        .input span::before, .input span::after {
+            position: absolute;
+        }
+        .input span::after {
+            content: attr(data-year);
+            top: 25px;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+        .input span::before {
+            content: attr(data-info);
+            top: -65px;
+            width: 110px;
+            transform: translateX(-5px) rotateZ(-45deg);
+            font-size: 12px;
+            text-indent: -10px;
+        }
+    </style>
+    <style>
+        .brows_name {
+            text-align: center;
+            height: 38px;
+            margin: 60px 0;
+        }
+        .flex-parent-Chrome {
+            display: flex;
+            width: 700vw;
+            justify-content: center;
+        }
+        .flex-parent-Edge {
+            display: flex;
+            width: 300vw;
+            justify-content: center;
+        }
+        .flex-parent-Firefox {
+            display: flex;
+            width: 700vw;
+            justify-content: center;
+        }
+        .flex-parent-Internet_Explorer {
+            display: flex;
+            width: 150vw;
+            justify-content: center;
+        }
+        .flex-parent-Opera {
+            display: flex;
+            width: 600vw;
+            justify-content: center;
+        }
+        .flex-parent-Safari {
+            display: flex;
+            width: 500vw;
+            justify-content: center;
+        }
+        .flex-parent-Android_Webview {
+            display: flex;
+            width: 600vw;
+            justify-content: center;
+        }
+        .flex-parent-Chrome_for_Android {
+            display: flex;
+            width: 600vw;
+            justify-content: center;
+        }
+        .flex-parent-Firefox_for_Android {
+            display: flex;
+            width: 600vw;
+            justify-content: center;
+        }
+        .flex-parent-Opera_for_Android {
+            display: flex;
+            width: 500vw;
+            justify-content: center;
+        }
+        .flex-parent-Safari_on_IOS {
+            display: flex;
+            width: 500vw;
+            justify-content: center;
+        }
+    </style>
+    <style>
+        .table {
+            width: 100%;
+            border: none;
+            margin-bottom: 20px;
+            border-collapse: separate;
+        }
+        .table thead th {
+            font-weight: bold;
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            background: #EDEDED;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+        .table tr th:first-child, .table tr td:first-child {
+            border-left: 1px solid #ddd;
+        }
+        .table tr th:last-child, .table tr td:last-child {
+            border-right: 1px solid #ddd;
+        }
+        .table thead tr th:first-child {
+            border-radius: 20px 0 0 0;
+        }
+        .table thead tr th:last-child {
+            border-radius: 0 20px 0 0;
+        }
+        .table tbody td {
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .table tbody tr:nth-child(even) {
+            background: #F8F8F8;
+        }
+        .table tbody tr:last-child td{
+            border-bottom: 1px solid #ddd;
+        }
+        .table tbody tr:last-child td:first-child {
+            border-radius: 0 0 0 20px;
+        }
+        .table tbody tr:last-child td:last-child {
+            border-radius: 0 0 20px 0;
+        }
+        .AllElem{
+            margin-left: 10%;
+        }
+    </style>
+    <style>
+        #popup{
+        display: none;
+    }
+    .popup-container{
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(96 95 127 / 70%);
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .popup{
+        background-color: #ffffff;
+        padding: 20px 30px;
+        width: 60%;
+        height: fit-content;
+        border-radius: 15px;
+    }
+    .close-popup{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .close-popup a{
+        font-size: 1.2rem;
+        background-color: black;
+        color: white;
+        padding: 5px 10px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 10px;
+        display: inline-block;
+    }</style>
+</head>
+<body>
+<script type = "text/javascript" src ="HoldMyBeer.js" ></script>
+<!-- Содержит функции для обращения непосредственно к БД -->
+<script type = "text/javascript">
+    function KEKFilter(store,property=null,search = null){
+        let arr = [];
+        let i = 0
+        let newJson;
+        if (search == null) { newJson = data[store].filter(function callbackFn(e,index){
+            arr[i]= index;
+            i++;
+            return e})}
+        else if (store == "Blocks"|| store =="Dangerous_Blocks" ){
+            newJson = data[store].filter(function callbackFn(e,index){
+                if (e == search){
+                    arr[i]= index;
+                    i++;}
+                return e == search});
+        }else
+        { newJson = data[store].filter(function callbackFn(e,index){
+            if (e[property] == search){
+                arr[i]= index;
+                i++;}
+            return e[property] == search});}
+        return {
+            "id" :arr,
+            "obj":newJson};
+    }// Вводишь хранилище(store), свойство по которому будешь
+    // выбирать(property) и говоришь чему должно ровняться это свойство. На выходе массив объектов подходящим
+    // под это условие.
+    function KEKID(Block,Elem){
+        let Res=KEKFilter("Elements","Name_Element",Elem)
+        let i=0
+        let ID= 0;
+        Res["obj"].forEach(e=>{ if (KEKGetByID("Blocks",e["id_blocks"])["obj"]==Block){ ID=Res["id"][i]}else i++})
+        if (ID == 0){Block=Block[0].toLowerCase()+Block.substring(1,Block.length+1);i=0; Res["obj"].forEach(e=>{ if (KEKGetByID("Blocks",e["id_blocks"])["obj"]==Block){ ID=Res["id"][i]}else i++})}
+        return ID
+    }
+    function KEKGetByID(store,ID){
+        return {"id" : ID,
+            "obj": data[store][ID]};} //Вводишь ID элемента - получаешь его как объект
+    function KEKCombine(ID){
+        let Elem = KEKGetByID("Elements",ID);
+        let Block = KEKGetByID("Blocks",Elem["obj"]["id_blocks"]);
+        let Elem_Brows = KEKFilter("Element_Browsers", "ID_Element", ID);
+        let Brows = [];
+        Elem_Brows["obj"].forEach(e => Brows.push(KEKFilter("Browsers","ID_Browser", e["ID_Browser"])));
+        let brows_OS = [];
+        Brows.forEach(e => brows_OS.push(KEKFilter("Browsers_OS","ID_Browser_Pos", e["id"][0])));
+        let OSa = [];
+        brows_OS.forEach(e=> e["obj"].forEach(el =>  OSa.push(KEKGetByID("OS", el["ID_OS"]))));
+        let OSb = [];
+        OSa.forEach((e) => { if (!OSb.includes(e["id"])) OSb.push(e["id"]);});
+        OSa= [];
+        OSb.forEach(e =>  OSa.push(KEKGetByID("OS", e)));
+        return {
+            "block" : Block,
+            "elem" : Elem,
+            "elem_brows" : Elem_Brows,
+            "Brows" : Brows,
+            "brows_OS" : brows_OS,
+            "OS" : OSa,
+        }
+    }//Получение всех данных для одного элемента
+</script>
+<!-- Полезные приблуды -->
+<script type = "text/javascript">
+    function byField(field) {
+        return (a, b) => a[field] > b[field] ? 1 : -1;
+    }// Параметр для сортировки массива объектов по свойству по возрастанию
+    function contains(arr, elem) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] === elem) {
+                return true;
+            }
+        }
+        return false;
+    }//проверка содержит ли массив определенный элемент
+    // Выдает все браузеры по заданному типу.
+    // Например: GetAllBrowsersByType("Chrome") -> [ "Chrome 1", "Chrome 2", "Chrome 3", "Chrome 4", ...]
+    //           GetAllBrowsersByType("Internet Explorer") -> [ "Internet Explorer 1", "Internet Explorer 2", "Internet Explorer 3", ...]
+    function GetAllBrowsersByType(browserType) {
+        let pool = KEKFilter("Browsers")["obj"];
+        return pool.map(browserData => browserData["ID_Browser"].split(/\s/))
+            .filter(browserQualifiedName => browserQualifiedName[0] == browserType)
+            .map(browserQualifiedName => browserQualifiedName.join(" "));
+    }
+    function GetAllOSByName(osName) {
+        let pool = KEKFilter("OS")["obj"];
+        return pool.map(OsData => OsData["Name_OS"].split(/\s/))
+            .filter(OsQualifiedName => OsQualifiedName[0] == osName)
+            .map(OsQualifiedName => OsQualifiedName.join(" "));
+    }
+</script>
+<!-- Функции для работы поиска по нескольким элементам -->
+<script type = "text/javascript">
+    function BaseForSearch(){
+        let BOOBA = KEKFilter("Elements")["obj"];
+        for(let i = 0; i<BOOBA.length;i++){
+            BOOBA[i] = BOOBA[i]["Name_Element"] +"/"+KEKGetByID("Blocks", BOOBA[i]["id_blocks"])["obj"]
+        }
+        return BOOBA};
+    function SearcherFunc(){
+        let BOOBA = [];
+        for (var i=0; i<KEKFilter("Elements")["obj"].length;i++)
+            if (document.getElementById(i) != null){BOOBA.push(i)}
+        if (BOOBA.length!=0){
+            console.log(BOOBA);
+            console.log(1);MinResqStackInit(BOOBA)}
+    }
+    var BuffCount=0
+    function deleteDiv(i){document.getElementById(i).remove();BuffCount--}
+    function Buffer(ID){
+        let B = BaseForSearch()[ID];
+        if(document.getElementById(ID) == null){
+            if (BuffCount != 10){
+                buffer.innerHTML+='<div class="buffElem"  id ='+ID+'><a href="javascript:deleteDiv('+ID+')">'+B+'</a></div>'
+                BuffCount++
+            } else alert("Нельзя выбрать больше 10 элементов для поиска")}
+    }
+    function MinResqStack(ID){
+        let nu = [];
+        console.log(1)
+        ID.forEach(e => nu.push(MinResq(e)));
+        //console.log(nu);
+        return {"IDs" : ID,
+            "Chrome" : MinFromPool(nu,"Chrome"),
+            "Edge" : MinFromPool(nu,"Edge"),
+            "Firefox" : MinFromPool(nu,"Firefox"),
+            "Internet_Explorer" : MinFromPool(nu,"Internet_Explorer"),
+            "Opera" : MinFromPool(nu,"Opera"),
+            "Safari" : MinFromPool(nu,"Safari"),
+            "Android_Webview" : MinFromPool(nu,"Android_Webview"),
+            "Chrome_for_Android" : MinFromPool(nu,"Chrome_for_Android"),
+            "Firefox_for_Android" : MinFromPool(nu,"Firefox_for_Android"),
+            "Opera_for_Android" : MinFromPool(nu,"Opera_for_Android"),
+            "Safari_on_IOS" : MinFromPool(nu,"Safari_on_IOS"),
+            "Windows":MinFromPoolOS(nu,"MinResqWindows"),
+            "MacOS":MinFromPoolOS(nu,"MinResqMacOS"),
+            //"Linux":MinFromPoolOS(nu,"MinResqLinux"),
+            "Android":MinFromPoolOS(nu,"MinResqAndroid"),
+            "IOS":MinFromPoolOS(nu,"MinResqIOS")
+        }
+    };//Минимальные требования из 10
+    function MinFromPool(nu,property){
+        let sthosh = [];
+        nu.forEach(e=> {if (e[property]["PS"] == "No support") {sthosh.push(e[property]["FS"])} else sthosh.push(e[property]["PS"]) } )
+        if(contains(sthosh,"No support")){ return "No support"} else {return Math.max(...sthosh);};
+    }//Подфункция для MinResqStack(ID)
+    function MinFromPoolOS(nu,property){
+        let shtosh = [];
+        let spisok = ["Chrome","Edge","Firefox","Internet_Explorer","Opera","Safari","Android_Webview","Chrome_for_Android","Firefox_for_Android", "Opera_for_Android","Safari_on_IOS"];
+        nu.forEach(e=> spisok.forEach(el => { if (e[el].hasOwnProperty(property)) shtosh.push(e[el][property])}))
+        shtosh= [...new Set(shtosh)]
+        shtosh = shtosh.filter(e=> e != "No support")
+        let res= []
+        shtosh.forEach(e=> res.push(KEKFilter("OS","Name_OS",e)["obj"][0]["Date_Release"]))
+        shtosh = []
+        var datetime_regex = /(\d\d)\s(\d\d)\s(\d\d\d\d)/;
+        res.forEach(e=> {var first_date_arr = datetime_regex.exec(e);var first_datetime = new Date(first_date_arr[3], first_date_arr[2]-1, first_date_arr[1]);shtosh.push(first_datetime)})
+        if (shtosh.length <1) return "No support";
+        return (KEKFilter("OS","Date_Release",res[shtosh.indexOf(lastDateObjectInArray(shtosh))])["obj"][0]["Name_OS"]);
+    }//Подфункция для MinResqStack(ID)
+    function lastDateObjectInArray(data) {
+        return data.reduce((a, b) => {
+            if (a || b) {
+                return new Date(a) > new Date(b) ? a : b;
+            } else {
+                return 'Не найдено';
+            }
+        });
+    }
+    function MinResq(ID){
+        let Elem = KEKCombine(ID)["elem_brows"]["obj"];
+        let TOS = [];
+        let ElemOld = Elem;
+        Elem.forEach(e => {var j = e["ID_Browser"].split(/\s/); TOS.push(j[0])})
+        Elem = Checks(Elem,TOS);
+        TOS=[];
+        Elem.forEach(e=>TOS.push(KEKFilter("Browsers","ID_Browser",e["ID_Browser"])));
+        let GG = [];
+        TOS.forEach(e=>GG.push(KEKFilter("Browsers_OS","ID_Browser_Pos",e["id"])));
+        let OSa = [];
+        GG.forEach(e=> e["obj"].forEach(el => OSa.push(KEKGetByID("OS",el["ID_OS"]))));
+        let OSb = [];
+        OSa.forEach((e) => { if (!OSb.includes(e["id"])) OSb.push(e["id"]);});
+        OSa= [];
+        OSb.forEach(e =>  OSa.push(KEKGetByID("OS", e)));
+        OSa.sort(byField("id"));
+        return { "Name_Block" : KEKGetByID("Blocks",KEKGetByID("Elements",ID)["obj"]["id_blocks"])["obj"],
+            "Name_Element": KEKGetByID("Elements",ID)["obj"]["Name_Element"],
+            "Description" : KEKGetByID("Elements",ID)["obj"]["description"],
+            "Chrome" : {"PS" :  Supp(1,"Chrome",ElemOld) ,"FS" : Supp(2,"Chrome",ElemOld),"SFS" : Supp(3,"Chrome",ElemOld) , "SPS" : Supp(4,"Chrome",ElemOld), "MinResqWindows" :SuppOS("Chrome","Windows",TOS,GG,OSa), "MinResqMacOS" :SuppOS("Chrome","OS",TOS,GG,OSa)},//"MinResqLinux" :SuppOS("Chrome","Linux",TOS,GG,OSa)},
+            "Edge" : {"PS" :  Supp(1,"Edge",ElemOld) ,"FS" : Supp(2,"Edge",ElemOld),"SFS" : Supp(3,"Edge",ElemOld) , "SPS" : Supp(4,"Edge",ElemOld), "MinResqWindows" :SuppOS("Edge","Windows",TOS,GG,OSa), "MinResqMacOS" :SuppOS("Edge","OS",TOS,GG,OSa)}, //"MinResqLinux" :SuppOS("Edge","Linux",TOS,GG,OSa)},
+            "Firefox" : {"PS" :  Supp(1,"Firefox",ElemOld) ,"FS" : Supp(2,"Firefox",ElemOld),"SFS" : Supp(3,"Firefox",ElemOld) , "SPS" : Supp(4,"Firefox",ElemOld) ,"MinResqWindows" :SuppOS("Firefox","Windows",TOS,GG,OSa), "MinResqMacOS" :SuppOS("Firefox","OS",TOS,GG,OSa)}, //"MinResqLinux" :SuppOS("Firefox","Linux",TOS,GG,OSa)},
+            "Internet_Explorer" : {"PS" :  Supp(1,"Internet_Explorer",ElemOld) ,"FS" : Supp(2,"Internet_Explorer",ElemOld),"SFS" : Supp(3,"Internet_Explorer",ElemOld) , "SPS" : Supp(4,"Internet_Explorer",ElemOld) ,"MinResqWindows" :SuppOS("Internet_Explorer","Windows",TOS,GG,OSa)},
+            "Opera" : {"PS" :  Supp(1,"Opera",ElemOld) ,"FS" : Supp(2,"Opera",ElemOld),"SFS" : Supp(3,"Opera",ElemOld) , "SPS" : Supp(4,"Opera",ElemOld) ,"MinResqWindows" :SuppOS("Opera","Windows",TOS,GG,OSa), "MinResqMacOS" :SuppOS("Opera","OS",TOS,GG,OSa)},// "MinResqLinux" :SuppOS("Opera","Linux",TOS,GG,OSa)},
+            "Safari" : {"PS" :  Supp(1,"Safari",ElemOld) , "FS" : Supp(2,"Safari",ElemOld), "SFS" : Supp(3,"Safari",ElemOld) , "SPS" : Supp(4,"Safari",ElemOld), "MinResqWindows" :SuppOS("Safari","Windows",TOS,GG,OSa), "MinResqMacOS" :SuppOS("Safari","OS",TOS,GG,OSa)},
+            "Android_Webview" : {"PS" :  Supp(1,"Android_Webview",ElemOld) ,"FS" : Supp(2,"Android_Webview",ElemOld),"SFS" : Supp(3,"Android_Webview",ElemOld) , "SPS" : Supp(4,"Android_Webview",ElemOld),"MinResqAndroid" :SuppOS("Android_Webview","Android",TOS,GG,OSa)},
+            "Chrome_for_Android" : {"PS" :  Supp(1,"Chrome_for_Android",ElemOld) ,"FS" : Supp(2,"Chrome_for_Android",ElemOld),"SFS" : Supp(3,"Chrome_for_Android",ElemOld), "SPS" : Supp(4,"Chrome_for_Android",ElemOld) ,"MinResqAndroid" :SuppOS("Chrome_for_Android","Android",TOS,GG,OSa)},
+            "Firefox_for_Android" : {"PS" :  Supp(1,"Firefox_for_Android",ElemOld) ,"FS" : Supp(2,"Firefox_for_Android",ElemOld),"SFS" : Supp(3,"Firefox_for_Android",ElemOld) , "SPS" : Supp(4,"Firefox_for_Android",ElemOld) ,"MinResqAndroid" :SuppOS("Firefox_for_Android","Android",TOS,GG,OSa)},
+            "Opera_for_Android" : {"PS" :  Supp(1,"Opera_for_Android",ElemOld) ,"FS" : Supp(2,"Opera_for_Android",ElemOld),"SFS" : Supp(3,"Opera_for_Android",ElemOld) , "SPS" : Supp(4,"Opera_for_Android",ElemOld),"MinResqAndroid" :SuppOS("Opera_for_Android","Android",TOS,GG,OSa)},
+            "Safari_on_IOS" : {"PS" :  Supp(1,"Safari_on_IOS",ElemOld) ,"FS" : Supp(2,"Safari_on_IOS",ElemOld),"SFS" : Supp(3,"Safari_on_IOS",ElemOld), "SPS" : Supp(4,"Safari_on_IOS",ElemOld) ,"MinResqIOS" :SuppOS("Safari_on_IOS","IOS",TOS,GG,OSa)}
+        };
+    }//Минимальные требования для одного элемента
+    function SuppOS(Browser,OS,TOS,Comp,OSs){
+        let Bip = [];
+        TOS = TOS.filter(ele => {let j = ele["obj"][0]["ID_Browser"].split(/\s/)[0]; if (j==Browser) return ele});
+        let TOSa= TOS[0];
+        if (TOS.length >=1){Comp.forEach(ele => ele["obj"].forEach( e=>{let j = e["ID_Browser_Pos"]; if (j==TOSa["id"][0]){ Bip.push(ele["obj"])}}));
+            Comp = Bip;}
+        OSs = OSs.filter(ele => {let j = ele["obj"]["Name_OS"].split(/\s/)[0];  if (j==OS) return ele});
+        let OSa=[];
+        if (Comp.is) return "No support";
+        OSs.forEach(ele => Comp.forEach(e=>{if (ele["id"] == e["ID_OS"]){OSa.push(ele)}} ));
+        if (OSa.length <3) {return "No support"} else
+        {return OSa[0]["obj"]["Name_OS"]};
+    }//Подфункция для MinResq(ID)
+    function Supp(type,Browser,Elem){
+        let TOS = [];
+        Elem = Elem.filter(ele => ele["type_of_support"]== type);
+        Elem.forEach(e => {let j = e["ID_Browser"].split(/\s/); TOS.push(j[0])});
+        let i = 0;
+        let res=-1;
+        TOS.forEach(e => {if(e == Browser){res=Elem[i]};i++ })
+        if(res !=-1) {return Number(res["ID_Browser"].split(/\s/)[1])} else return "No support";
+    } //Подфункция для MinResq(ID)
+    function Checks(Elem,check){
+        let results = [];
+        for (let i = 0; i < check.length-1; i++) {
+            for (let j = i+1; j<check.length;j++) {
+                if(check[i] == check[j])
+                    results.push(j);
+            }
+        }
+        results.sort((a, b) => b - a);
+        results = [...new Set(results)];
+        results.forEach(e => Elem.splice(e,1))
+        return Elem;
+    }//Проверка для подсчета MinResq(ID)
+</script>
+<!-- Функции для работы поиска с селекторами -->
+<script type ="text/javascript">
+    function stringToDate(_date,_format,_delimiter) {
+        var formatLowerCase=_format.toLowerCase();
+        var formatItems=formatLowerCase.split(_delimiter);
+        var dateItems=_date.split(_delimiter);
+        var monthIndex=formatItems.indexOf("mm");
+        var dayIndex=formatItems.indexOf("dd");
+        var yearIndex=formatItems.indexOf("yyyy");
+        var month=parseInt(dateItems[monthIndex]);
+        month-=1;
+        var formatedDate = new Date(dateItems[yearIndex],month,dateItems[dayIndex]);
+        return formatedDate;
+    }
+    function SelectSearch(){
+        let os_cbs = document.getElementsByClassName('check oscb')
+        let flag = false;
+        for(let el of os_cbs){
+            if(el.checked){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag){
+            alert("OS is not selected!")
+            return false;
+        }
+
+        let bw_cbs = document.getElementsByClassName('check bwcb')
+        flag = false;
+        for(let el of bw_cbs){
+            if(el.checked){
+                flag = true;
+                break;
+            }
+        }
+        if(!flag){
+            alert("Browser is not selected!")
+            return false;
+        }
+        let checkbox = document.querySelectorAll('.check:checked');
+        var firstDate = document.getElementById("from").value;
+        var secondDate = document.getElementById("to").value;
+        let Res = []
+        checkbox.forEach(e => Res.push(e.id))
+        let browser_s = []
+        let os_s = []
+        for(let fpos=0;fpos<Res.length;fpos++){
+            let bid = Res[fpos]
+            let flag = false;
+            for(let bpos=0; bpos < data["Browsers"].length; bpos++){
+                if (data["Browsers"][bpos]["ID_Browser"] == bid){
+                    browser_s.push(bpos);
+                    flag = true;
+                    break;
+                }
+            }
+            if(!flag){
+                for(let opos=0; opos < data["OS"].length; opos++){
+                    if(data["OS"][opos]["Name_OS"] == bid){
+                        os_s.push(opos);
+                        break;
+                    }
+                }
+            }
+        }
+        let fbrowsers = []
+        let from_date = new Date(document.getElementById('from').value);
+        let to_date = new Date(document.getElementById('to').value);
+        for(let bid of browser_s){
+            let flag = false;
+            for(let oid of os_s){
+                for(let bos of data["Browsers_OS"]){
+                    if (bos["ID_OS"] == oid && bos["ID_Browser_Pos"] == bid ){
+                        flag = true;
+                        fbrowsers.push(bid);
+                        break;
+                    }
+                }
+                if(flag){break;}
+            }
+        }
+        let res = []
+        for(let bpos of fbrowsers){
+            let bid = data["Browsers"][bpos]["ID_Browser"];
+            let cur_date = stringToDate(data["Browsers"][bpos]["Date_Release"], "dd mm yyyy", ' ');
+            for(let elb of data["Element_Browsers"]){
+                if(elb["ID_Browser"] == bid && !res.includes(elb["ID_Element"]) && (
+                    elb["type_of_support"] == 1 && from_date <= cur_date <= to_date ||
+                    elb["type_of_support"] == 2 && from_date <= cur_date <= to_date ||
+                    elb["type_of_support"] == 4 && cur_date > to_date
+                )){
+                    res.push(elb["ID_Element"]);
+                }
+            }
+        }
+        AllElem(res,"Search results")
+    }
+</script>
+<script type="text/javascript">
+    function Dangerous(){
+        let DangerousBlockPool = KEKFilter("Dangerous_Blocks")["obj"];
+        let DangerousElementPool = KEKFilter("Dangerous_Elements")["obj"];
+        let res = []
+        for(let i = 0; i<DangerousElementPool.length;i++){
+            res[i] = {"Block_name":DangerousBlockPool[DangerousElementPool[i]["ID_Block"]],
+                "Element_name":DangerousElementPool[i]["Name_Element"],
+                "Description":DangerousElementPool[i]["Description"],
+                "Chrome":DangerousElementPool[i]["Chrome_Support"].split(/\s/)[1].replace("_"," "),
+                "Edge":DangerousElementPool[i]["Edge_Support"].split(/\s/)[1].replace("_"," "),
+                "Firefox":DangerousElementPool[i]["Firefox_Support"].split(/\s/)[1].replace("_"," "),
+                "Internet_Explorer":DangerousElementPool[i]["Exlporer_Support"].split(/\s/)[1].replace("_"," "),
+                "Opera":DangerousElementPool[i]["Opera_Support"].split(/\s/)[1].replace("_"," "),
+                "Safari":DangerousElementPool[i]["Safari_Support"].split(/\s/)[1].replace("_"," "),
+                "Android_Webview":DangerousElementPool[i]["Android_Webview_Support"].split(/\s/)[1].replace("_"," "),
+                "Chrome_for_Android":DangerousElementPool[i]["Chrome_For_Android_Support"].split(/\s/)[1].replace("_"," "),
+                "Firefox_for_Android":DangerousElementPool[i]["Firefox_For_Android_Support"].split(/\s/)[1].replace("_"," "),
+                "Opera_for_Android": DangerousElementPool[i]["Opera_For_Android_Support"].split(/\s/)[1].replace("_"," "),
+                "Safari_on_IOS":DangerousElementPool[i]["Safari_on_IOS_Support"].split(/\s/)[1].replace("_"," ")}}
+        return res.sort(byField("Block_name"));
+    }
+    function BaseForAll(ID){
+        let Base = [];
+        if (ID == null){
+            Base = KEKFilter("Elements")["obj"];}
+        else {ID.forEach(e=> Base.push(KEKGetByID("Elements",e)["obj"]))}
+        for(let i = 0; i<Base.length;i++){
+            Base[i] = {
+                "Name_Block":KEKGetByID("Blocks", Base[i]["id_blocks"])["obj"],
+                "Name_Elem":Base[i]["Name_Element"]
+            }
+        }
+        Base.forEach(e=>e["Name_Block"]=e["Name_Block"][0].toUpperCase()+e["Name_Block"].substring(1,e["Name_Block"].length+1))
+        Base.sort(byField("Name_Block"))
+        let value = Base[0]["Name_Block"];
+        let res = [[value,[]]]
+        let counter=0;
+        Base.forEach(e=> {if (e["Name_Block"]== value) {res[counter][1].push(e["Name_Elem"])} else {value = e["Name_Block"]; counter++; res[counter] = [value,[e["Name_Elem"]]]  } } )
+        res.forEach(e=> e[1].sort())
+        return res}
+</script>
+<input type="checkbox" id="nav-toggle" hidden>
+<nav class="nav">
+    <label for="nav-toggle" class="nav-toggle" onclick></label>
+    <h2 class="logo">
+        <a href="javascript:SearchInit();">JS directory</a>
+    </h2>
+    <ul>
+        <li><a href="javascript:SelectSearchInit();">advanced search</a>
+        <li><a href="javascript:BrowsInit()">browser versions</a>
+        <li><a href="javascript:OSsInit()">OS versions</a>
+        <li><a href="javascript:AllElem()">elements JS</a>
+        <li><a href="javascript:DangerousInit()">special elements</a>
+    </ul>
+</nav>
+<a href="javascript:SearchInit();" style="text-decoration:none; color: black; text-align:center"><h1 class="h1" >JS directory</h1></a>
+<div id="popup">
+<div class="popup-container">
+<div class="popup">
+<div class="close-popup" id="closeBtn">
+<a href="##">✖</a></div>
+<div id ="popupbody">123</div>
+</div>
+</div>
+</div>
+<div id = "POOP" style="max-width: 1000vw; margin-left: 40px"></div>
+<!-- Содержит все функции выводящие что либо на сайт -->
+<script type = "text/javascript">
+    SearchInit();
+    //Поиск с буфером
+    function SearchInit(){
+        var B = BaseForSearch();
+        let Searcher =     '<form action=\"javascript:SearcherFunc();\"><div class="buffer" id="buffer"></div><br>\n <div class="search-form"><input autocomplete="off" = "search" class = \"textbox\" type=\"text\" placeholder=\"Enter the name of the block or the path to the element\" font-family: \'Open Sans\', sans-serif;>\n <button type=\"submit\"> </button>\n <br><div  id = "help"></div><br><div class="greetings"><p>Welcome, stranger.</p><p>You\'re found our JavaScript handbook.</p><p>It\'ll help you to know JavaScript better. Enjoy it. </p></div></div></form>';
+        POOP.innerHTML = Searcher;
+        POOP.querySelector("input").oninput=function(){
+            help.innerHTML= ""
+            POOP.querySelector("#help").className=""
+            if (this.value.length >2){
+                POOP.querySelector("#help").className="help"
+                var j = 0
+                var Re= new RegExp(this.value.toLowerCase()), text='';
+                if(Re.toString().includes('\\/')) {
+                    var Re1 = new RegExp(Re.toString().split(new RegExp('\/'))[1].slice(0,Re.toString().split(new RegExp('\/'))[1].length-1));
+                    var Re2 = new RegExp(Re.toString().split(new RegExp('\/'))[2]);
+                    console.log(Re1);console.log(Re2);
+                    for(var i=0; i<B.length; i++)
+                    {
+                        if(j<20 && Re1.test(B[i].split('/')[0].toLowerCase()) && Re2.test(B[i].split('/')[1].toLowerCase()))
+                        { console.log(j); text+='<a style=\"color:black; text-decoration: none\" href=\"javascript:Buffer('+i+')\">'+B[i]+'</a><br>'; j++ }}  }
+                else for(var i=0; i<B.length; i++){if(Re.test(B[i].split('/')[0].toLowerCase())&& j<20) { text+='<a style=\"color:black; text-decoration: none\" href=\"javascript:Buffer('+i+')\">'+B[i]+'</a><br>'; j++ }}
+                help.innerHTML=text} else help.innerHTML= ""
+        }
+    };//Инициализация поисковой строки на странице
+    function SelectSearchInit(){
+        let Searcher ='<form action="javascript:SelectSearch()"><div class="search-form">\n </div>\n';
+        let browserTypes = ["Chrome", "Edge", "Firefox", "Internet_Explorer", "Opera", "Safari", "Android_Webview", "Chrome_for_Android",
+            "Firefox_for_Android", "Opera_for_Android", "Safari_on_IOS"];
+        let osNames = ["Windows", "OS", "IOS", "Android"] ;
+        Searcher += `
+            <div class="filter">
+                <ul class="filter-card-list">
+                    <div class="filter-card">
+                        <div class="filter-card-header">
+                            <p>Filter by date</p>
+                        </div>
+                        <div class="filter-card-content">
+                            <label for="from">Select from:</label>
+                            <input type="date" id="from" name="filter-from"
+                                value="2000-01-01"
+                                min="2000-01-01" max="2022-06-25">
+                            <br>
+                            <label for="to">Select to:</label>
+                            <input type="date" id="to" name="filter-to"
+                                value="2022-05-25"
+                                min="2000-01-01" max="2022-06-25">
+                        </div>
+                    </div>
+                    <div class="filter-card">
+                        <div class="filter-card-header">
+                            <p>Filter by browser</p>
+                        </div>
+                        <div class="filter-card-content">
+                            <div class="dropdown">
+                                <ul class="dropdown-menu">
+                                ${browserTypes.map(type =>
+            `<li class="dropdown-submenu">
+                                        <input type="checkbox" class="check" id="${type}" onchange="chooseAll('${type}')">
+                                        <label for="${type}">${type.replaceAll("_", " ")}</label>
+                                        <ul class="dropdown-menu">` +
+            GetAllBrowsersByType(type).map(
+                browserName => `<li>
+                                                            <input type="checkbox" class="check bwcb" id="${browserName}" name="${type}_sub">
+                                                            <label for="${browserName}">${browserName.replaceAll("_", " ")}</label>
+                                                        </li>`
+            ).join("\n") +
+            `</ul></li>`).join("\n")}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-card">
+                        <p>Filter by OS</p>
+                        <div class="filter-card-content">
+                            <div class="dropdown">
+                                <ul class="dropdown-menu">
+                                ${osNames.map(os =>
+            `<li class="dropdown-submenu">
+                                        <input type="checkbox" class="check" id="${os}" onchange="chooseAll('${os}')">
+                                        <label for="${os}">${os}</label>
+                                        <ul class="dropdown-menu">` +
+            GetAllOSByName(os).map(
+                OsName => `<li>
+                                                             <input type="checkbox" class="check oscb" id="${OsName}" name="${os}_sub">
+                                                             <label for="${OsName}">${OsName}</label>
+                                                         </li>`
+            ).join("\n") +
+            `</ul></li>`).join("\n")}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>`;
+        Searcher += '<button class ="button" type=\"submit\"> </button></form>';
+        POOP.innerHTML =  Searcher;
+    }
+    function MinResqStackInit(ID){
+        A = ID
+        let Resq = MinResqStack(A);
+        POOP.innerHTML = '<h1 class="red" >System requirements</h1>\n ' +
+            '<div class = "tekst"><h2>Browsers</h2>\n ' +
+            '<ul>\n' +
+            '        <li><a>Chrome: </a>' + Resq["Chrome"] +
+            '        <li><a>Edge: </a>' + Resq["Edge"] +
+            '        <li><a>Firefox: </a>' + Resq["Firefox"] +
+            '        <li><a>Internet Explorer: </a>' + Resq["Internet_Explorer"] +
+            '        <li><a>Opera: </a>' + Resq["Opera"] +
+            '        <li><a>Safari: </a>' + Resq["Safari"] +
+            '        <li><a>Android Webview: </a>' + Resq["Android_Webview"] +
+            '        <li><a>Chrome for Android: </a>'+ Resq["Chrome_for_Android"] +
+            '        <li><a>Firefox for Android: </a>'+ Resq["Firefox_for_Android"] +
+            '        <li><a>Opera for Android: </a>'+ Resq["Opera_for_Android"] +
+            '        <li><a>Safari on IOS: </a>'+ Resq["Safari_on_IOS"] +
+            '    </ul>'+
+            '<h2>Operating Systems</h2>\n ' +
+            '<ul>\n' +
+            '        <li><a>Windows: </a>' + Resq["Windows"] +
+            '        <li><a>MacOS: </a>' + Resq["MacOS"] +
+            '        <li><a>Android: </a>' + Resq["Android"] +
+            '        <li><a>IOS: </a>' + Resq["IOS"] +
+            '    </ul>'+
+            '<a id ="element" href = "javascript: MassInit(A);">Elements</a></div>';
+    };//Инициализация вывода минимальных требований на странице
+    function MassInit(ID){
+        element.innerHTML = "";
+        POOP.innerHTML += '<h2 style="text-align: center">Searching results</h2>'
+        ID.forEach(e=>{console.log(e); Init(e,POOP)});
+    }
+    function FullInit(ID,HTMLID){
+        HTMLID.innerHTML = "";
+        Init(ID,HTMLID)
+    }
+    function Init(ID,Type){
+        var ABC = MinResq(ID);
+        Type.innerHTML += '<h2 class="red">'+ ABC["Name_Block"].replaceAll("_"," ")+' / <br>'+ ABC["Name_Element"].replaceAll("_"," ") + '</h2>' +
+            '<div class="tekst"><b style="font-size:20px">Element description:</b><br>'+ ABC["Description"]+
+            '<br>'+
+            '<b style="font-size:20px">Block support:</b>'+
+            '<details><summary>Chrome</summary>'+
+            '<a>Part Support: ' +ABC["Chrome"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Chrome"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Chrome"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Chrome"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: ' + ABC["Chrome"]["MinResqWindows"]+', MacOS: '+ ABC["Chrome"]["MinResqMacOS"] +'</a><br>'+ //, ' + ABC["Chrome"]["MinResqLinux"]+' </li>'+
+            '</details>'+
+            '<details><summary>Edge</summary>'+
+            '<a>Part Support: ' +ABC["Edge"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Edge"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Edge"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Edge"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: ' +ABC["Edge"]["MinResqWindows"]+', MacOS: '+ ABC["Edge"]["MinResqMacOS"] +'</a><br>'+//, ' + ABC["Edge"]["MinResqLinux"]+ '</li>'+
+            '</details>'+
+            '<details><summary>Firefox</summary>'+
+            '<a>Part Support: ' +ABC["Firefox"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Firefox"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Firefox"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Firefox"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: ' + ABC["Firefox"]["MinResqWindows"]+', MacOS: '+ ABC["Firefox"]["MinResqMacOS"] +'</a><br>'+//, ' + ABC["Firefox"]["MinResqLinux"]+' </li>'+
+            '</details>'+
+            '<details><summary>Internet Explorer</summary>'+
+            '<a>Part Support: ' +ABC["Internet_Explorer"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Internet_Explorer"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Internet_Explorer"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Internet_Explorer"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: '+ ABC["Internet_Explorer"]["MinResqWindows"] +' </a><br>'+
+            '</details>'+
+            '<details><summary>Opera</summary>'+
+            '<a>Part Support: ' +ABC["Opera"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Opera"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Opera"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Opera"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: ' + ABC["Opera"]["MinResqWindows"]+', MacOS: '+ ABC["Opera"]["MinResqMacOS"] +'</a><br>'+//, ' + ABC["Opera"]["MinResqLinux"]+' </li>'+
+            '</details>'+
+            '<details><summary>Safari</summary>'+
+            '<a>Part Support: ' +ABC["Safari"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Safari"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Safari"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Safari"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Windows: ' + ABC["Safari"]["MinResqWindows"]+', MacOS: '+ ABC["Safari"]["MinResqMacOS"] +'</a><br>'+
+            '</details>'+
+            '<details><summary>Android Webview</summary>'+
+            '<a>Part Support: ' +ABC["Android_Webview"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Android_Webview"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Android_Webview"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Android_Webview"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Android: '+ ABC["Android_Webview"]["MinResqAndroid"] +'</a><br>'+
+            '</details>'+
+            '<details><summary>Chrome for Android</summary>'+
+            '<a>Part Support: ' +ABC["Chrome_for_Android"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Chrome_for_Android"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Chrome_for_Android"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Chrome_for_Android"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Android: '+ ABC["Chrome_for_Android"]["MinResqAndroid"] +'</a><br>'+
+            '</details>'+
+            '<details><summary>Firefox for Android</summary>'+
+            '<a>Part Support: ' +ABC["Firefox_for_Android"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Firefox_for_Android"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Firefox_for_Android"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Firefox_for_Android"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Android: '+ ABC["Firefox_for_Android"]["MinResqAndroid"] +'</a><br>'+
+            '</details>'+
+            '<details><summary>Opera for Android</summary>'+
+            '<a>Part Support: ' +ABC["Opera_for_Android"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Opera_for_Android"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Opera_for_Android"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Opera_for_Android"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: Android: '+ ABC["Opera_for_Android"]["MinResqAndroid"] +'</a><br>'+
+            '</details>'+
+            '<details><summary>Safari on IOS</summary>'+
+            '<a>Part Support: ' +ABC["Safari_on_IOS"]["PS"]+'</a><br>'+
+            '<a>Full Support: ' +ABC["Safari_on_IOS"]["FS"]+'</a><br>'+
+            '<a>Extended Support: ' +ABC["Safari_on_IOS"]["SFS"]+'</a><br>'+
+            '<a>Stop Support: ' +ABC["Safari_on_IOS"]["SPS"]+'</a><br>'+
+            '<a>Minimum Requirements on OS: IOS: '+ ABC["Safari_on_IOS"]["MinResqIOS"] +'</a><br>'+
+            '</details>'+
+            '</ul></div><div class="red1"></div>';
+    } //Инициализация вывода карточки по одному элементу
+    function OSsInit(){
+        let Block ='<h2 style="text-align: center">OSs</h2><br>'
+        let OSsPool = KEKFilter("OS")["obj"];
+        let OSsType = ["Windows","OS","Android","IOS"]
+        OSsType.forEach(e => {Block+= '<div class="timeline"><h1 class="os_name">'+e+'</h1><div class="flex-parent-'+e+'"><div class="input-flex-container">'; OSsPool.forEach(el => {if (el["Name_OS"].split(/\s/)[0] == e ){Block+= '<div class="input"><span data-year=\"'+ el["Date_Release"].replace(/ /ig, '/') + '\" data-info=\"'+ el["Name_OS"] +'\"></span></div>'}}); Block+='</div></div></div>'})
+        POOP.innerHTML = Block;
+    }
+    function BrowsInit(){
+        let Block ='<h2 style="text-align: center">Browsers</h2><br>'
+        let BrowsPool = KEKFilter("Browsers")["obj"];
+        let BrowsType = ["Chrome","Edge","Firefox","Internet_Explorer","Opera","Safari","Android_Webview","Chrome_for_Android","Firefox_for_Android","Opera_for_Android","Safari_on_IOS"]
+        BrowsType.forEach(e => {Block+= '<div class="timeline"><h1 class="brows_name">'+e.replaceAll("_"," ")+'</h1><div class="flex-parent-'+e+'"><div class="input-flex-container">'; BrowsPool.forEach(el => {if (el["ID_Browser"].split(/\s/)[0] == e ){Block+= '<div class="input"><span data-year=\"'+ el["Date_Release"].replace(/ /ig, '/') + '\" data-info=\"'+ el["ID_Browser"].replaceAll("_"," ") +'\"></span></div>'}}); Block+='</div></div></div>'})
+        POOP.innerHTML = Block;
+    }
+    function DangerousInit(){
+        let Block ='<h2 style="text-align: center">Do not recommended to use</h2><br>'
+        let DangerousPool = Dangerous();
+        let TableHeader = ["Block name","Element name", "Chrome", "Edge", "Firefox","Explorer","Opera","Safari","Android Webview","Chrome for Android","Firefox for Android", "Opera for Android", "Safari on IOS"]
+        Block+='<table class="table"><thead><tr>';
+        TableHeader.forEach(e=> Block+='<th>'+e+'</th>')
+        Block+='</tr></thead><tbody>'
+        for(let i = 0; i<DangerousPool.length;i++){
+            Block+='<tr><td>'+DangerousPool[i]["Block_name"]+'</td><td>'+DangerousPool[i]["Element_name"]+'</td><td>'+DangerousPool[i]["Chrome"]+'</td><td>'+DangerousPool[i]["Edge"]+'</td><td>'+DangerousPool[i]["Firefox"]+'</td><td>'+DangerousPool[i]["Internet_Explorer"]+'</td><td>'+DangerousPool[i]["Opera"]+'</td><td>'+DangerousPool[i]["Safari"]+'</td><td>'+DangerousPool[i]["Android_Webview"]+'</td><td>'+DangerousPool[i]["Chrome_for_Android"]+'</td><td>'+DangerousPool[i]["Firefox_for_Android"]+'</td><td>'+DangerousPool[i]["Opera_for_Android"]+'</td><td>'+DangerousPool[i]["Safari_on_IOS"]+'</td></tr>'
+        }
+        Block+='</tbody></table>'
+        POOP.innerHTML = Block
+    }
+    function AllElem(ID=null,b="All elements"){
+        let Block = '<h2 style="text-align: center">'+b+'</h2><br><div class="AllElem">'
+        let Base = BaseForAll(ID);
+        console.log(Base)
+        Base.forEach(e=>{Block+= '<h3>'+e[0]+'</h3><ul>';  e[1].forEach(el=> {  Block+='<li style="list-style-type: none"><a style="color: black" href="javascript:PopUPInit('+KEKID(e[0],el)+');">'+el+'</a></li>'});Block+='</ul>' })
+        POOP.innerHTML = Block;
+    }
+    function chooseAll(id){
+        maincb = document.getElementById(id);
+        els = document.getElementsByName(id + "_sub");
+        for(let el of els){
+            el.checked = maincb.checked;
+        }
+    }
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("closeBtn");
+    function PopUPInit(ID){
+        FullInit(ID,popupbody)
+        popup.style.display = 'block';
+        document.body.style.overflow='hidden'
+    }
+    closeBtn.addEventListener('click', ()=>{
+        popup.style.display = 'none';
+        popupbody.innerHTML=""
+        document.body.style.overflow='auto'
+    });
+</script>
+</body>
+</html>
